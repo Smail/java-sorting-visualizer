@@ -10,4 +10,8 @@ public abstract class AnimatedSortAlgorithm {
     public void addListener(NextSortStepListener listener) {
         listeners.add(listener);
     }
+
+    protected final void notifySortListeners() {
+        for (NextSortStepListener l : listeners) l.nextSortStep();
+    }
 }
