@@ -1,3 +1,5 @@
+import animated.sorts.SortAlgorithmFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
@@ -45,6 +47,10 @@ public class SortVisualizer {
                  UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
         }
-        new SortVisualizer();
+        new SortVisualizer().sort(SortAlgorithmFactory.Algorithms.BUBBLE_SORT);
+    }
+
+    public void sort(SortAlgorithmFactory.Algorithms sortAlgorithm) {
+        sortJPanel.sort(SortAlgorithmFactory.getSortingAlgorithm(sortAlgorithm, generateRandomArrayDouble(200)));
     }
 }
