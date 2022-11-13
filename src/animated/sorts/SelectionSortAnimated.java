@@ -9,11 +9,11 @@ public class SelectionSortAnimated extends AnimatedSortAlgorithm {
 
     @Override
     public void sortImpl() {
-        for (unsortedPartitionStart = 0; unsortedPartitionStart < array.length; unsortedPartitionStart++) {
+        for (unsortedPartitionStart = 0; unsortedPartitionStart < array.length && !shouldStop(); unsortedPartitionStart++) {
             minElement = unsortedPartitionStart;
 
             // Find min
-            for (currentElement = unsortedPartitionStart + 1; currentElement < array.length; currentElement++) {
+            for (currentElement = unsortedPartitionStart + 1; currentElement < array.length && !shouldStop(); currentElement++) {
                 numComparisons++;
 
                 if (array[currentElement] < array[minElement]) {

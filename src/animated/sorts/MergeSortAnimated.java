@@ -8,6 +8,7 @@ public class MergeSortAnimated extends AnimatedSortAlgorithm {
     }
 
     private void mergeSort(int from, int to) {
+        if (shouldStop()) return;
         int n = to - from;
         if (n < 2) return;
         int middle = n / 2 + from;
@@ -32,14 +33,14 @@ public class MergeSortAnimated extends AnimatedSortAlgorithm {
         start = from;
         start2 = middle;
 
-        while (start < middle && start2 < to) {
+        while (start < middle && start2 < to && !shouldStop()) {
             numComparisons++;
             if (array[start] > array[start2]) {
                 double tmp = array[start2];
                 i = start2;
 
                 // Shift all the elements between i and j to the right by one.
-                while (i != start) {
+                while (i != start && !shouldStop()) {
                     array[i] = array[i - 1];
                     i--;
                     notifySortListeners();

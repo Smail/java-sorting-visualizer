@@ -11,6 +11,7 @@ public abstract class AnimatedSortAlgorithm {
     protected int numComparisons = 0;
     protected boolean hasFinished;
     private int numSwaps = 0;
+    private boolean shouldStop = false;
 
     public AnimatedSortAlgorithm(double[] array) {
         setArray(array);
@@ -32,7 +33,13 @@ public abstract class AnimatedSortAlgorithm {
         this.array = Arrays.stream(array).map(x -> (x + Math.abs(min)) / distance).toArray();
     }
 
+    public void stop() {
+        shouldStop = true;
+    }
+
     public final void sort() {
+        shouldStop = false;
+
         new Thread(() -> {
             hasFinished = false;
             sortImpl();
@@ -47,6 +54,10 @@ public abstract class AnimatedSortAlgorithm {
 
     public int getNumComparisons() {
         return numComparisons;
+    }
+
+    protected final boolean shouldStop() {
+        return shouldStop;
     }
 
     public boolean isRunning() {

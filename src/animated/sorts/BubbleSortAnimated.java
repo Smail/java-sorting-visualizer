@@ -12,11 +12,11 @@ public class BubbleSortAnimated extends AnimatedSortAlgorithm {
     public void sortImpl() {
         boolean swapped = true;
 
-        for (int n = array.length; swapped && n >= 0; n--) {
+        for (int n = array.length; swapped && n >= 0 && !shouldStop(); n--) {
             swapped = false;
             fixedComparingElement = 0;
 
-            for (int i = 1; i < n; i++) {
+            for (int i = 1; i < n && !shouldStop(); i++) {
                 fixedComparingElement = i;
                 floatingComparingElement = i - 1;
 

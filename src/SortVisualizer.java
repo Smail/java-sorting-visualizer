@@ -91,6 +91,7 @@ public class SortVisualizer {
     }
 
     public void sort() {
+        sortJPanel.stopSorting();
         sortJPanel.sort(SortAlgorithmFactory.getSortingAlgorithm(currentSortingAlgorithm, generateRandomArrayDouble(200)));
     }
 }

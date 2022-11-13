@@ -11,7 +11,7 @@ public class InsertionSortAnimated extends AnimatedSortAlgorithm {
     @Override
     public void sortImpl() {
         for (i = 0; i < array.length; i++) {
-            for (j = i; j > 0; j--) {
+            for (j = i; j > 0 && !shouldStop(); j--) {
                 numComparisons++;
                 if (array[j - 1] <= array[j]) break;
 

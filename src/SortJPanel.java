@@ -20,6 +20,10 @@ public class SortJPanel extends JPanel implements NextSortStepListener {
         sorter.sort();
     }
 
+    public void stopSorting() {
+        if (sorter != null) sorter.stop();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
