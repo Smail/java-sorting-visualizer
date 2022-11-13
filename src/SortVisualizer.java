@@ -7,10 +7,50 @@ import java.util.stream.IntStream;
 
 public class SortVisualizer {
     private final SortJPanel sortJPanel;
+    private SortAlgorithmFactory.Algorithms currentSortingAlgorithm = SortAlgorithmFactory.Algorithms.INSERTION_SORT;
 
     public SortVisualizer() {
         sortJPanel = new SortJPanel();
         JFrame frame = new JFrame("Sorting Visualizer");
+        JMenuBar menuBar = new JMenuBar();
+        JMenu settingsMenu = new JMenu("Settings");
+
+        JMenuItem changeAlgorithmMenuItem = new JMenuItem("Change Algorithm");
+        changeAlgorithmMenuItem.addActionListener(e -> {
+            String[] options = Arrays.stream(SortAlgorithmFactory.Algorithms.values())
+                    .map(SortAlgorithmFactory.Algorithms::getName)
+                    .toArray(String[]::new);
+
+            int index = -1;
+            for (int i = 0; i < options.length; i++) {
+                if (options[i].equalsIgnoreCase(currentSortingAlgorithm.getName())) {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index < 0) {
+                throw new RuntimeException("Unknown Error: Unknown current algorithm " +
+                        currentSortingAlgorithm.getName());
+            }
+
+            int selectedOption = JOptionPane.showOptionDialog(null,
+                    "Select the sorting algorithm to animate.", "Select Sorting Algorithm",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                    options, options[index]);
+
+            if (selectedOption != JOptionPane.CLOSED_OPTION) {
+                currentSortingAlgorithm = Arrays.stream(SortAlgorithmFactory.Algorithms.values())
+                        .filter(algorithms -> algorithms.getName().equalsIgnoreCase(options[selectedOption]))
+                        .findFirst()
+                        .orElseThrow();
+                sort();
+            }
+        });
+        settingsMenu.add(changeAlgorithmMenuItem);
+
+        menuBar.add(settingsMenu);
+        frame.setJMenuBar(menuBar);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(sortJPanel, BorderLayout.CENTER);
@@ -47,10 +87,10 @@ public class SortVisualizer {
                  UnsupportedLookAndFeelException e) {
             throw new RuntimeException(e);
         }
-        new SortVisualizer().sort(SortAlgorithmFactory.Algorithms.BUBBLE_SORT);
+        new SortVisualizer().sort();
     }
 
-    public void sort(SortAlgorithmFactory.Algorithms sortAlgorithm) {
-        sortJPanel.sort(SortAlgorithmFactory.getSortingAlgorithm(sortAlgorithm, generateRandomArrayDouble(200)));
+    public void sort() {
+        sortJPanel.sort(SortAlgorithmFactory.getSortingAlgorithm(currentSortingAlgorithm, generateRandomArrayDouble(200)));
     }
 }
