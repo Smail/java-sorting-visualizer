@@ -7,11 +7,13 @@ public class SortAlgorithmFactory {
             case INSERTION_SORT -> new InsertionSortAnimated(array);
             case SELECTION_SORT -> new SelectionSortAnimated(array);
             case MERGE_SORT -> new MergeSortAnimated(array);
+            case QUICK_SORT -> new QuickSortAnimated(array);
         };
     }
 
     public enum Algorithms {
-        BUBBLE_SORT("Bubble Sort"), INSERTION_SORT("Insertion Sort"), SELECTION_SORT("Selection Sort"), MERGE_SORT("Merge Sort");
+        BUBBLE_SORT("Bubble Sort"), INSERTION_SORT("Insertion Sort"), SELECTION_SORT("Selection Sort"),
+        MERGE_SORT("Merge Sort"), QUICK_SORT("Quick Sort");
 
         private final String name;
 
