@@ -11,6 +11,16 @@ public class SortAlgorithmFactory {
     }
 
     public enum Algorithms {
-        BUBBLE_SORT, INSERTION_SORT, SELECTION_SORT, MERGE_SORT
+        BUBBLE_SORT("Bubble Sort"), INSERTION_SORT("Insertion Sort"), SELECTION_SORT("Selection Sort"), MERGE_SORT("Merge Sort");
+
+        private final String name;
+
+        Algorithms(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }
