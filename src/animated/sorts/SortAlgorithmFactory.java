@@ -13,7 +13,7 @@ public class SortAlgorithmFactory {
 
     public enum Algorithms {
         BUBBLE_SORT("Bubble Sort"), INSERTION_SORT("Insertion Sort"), SELECTION_SORT("Selection Sort"),
-        MERGE_SORT("Merge Sort"), QUICK_SORT("Quick Sort");
+        MERGE_SORT("Merge Sort"), QUICK_SORT("Quicksort");
 
         private final String name;
 
