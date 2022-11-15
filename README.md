@@ -9,3 +9,10 @@ Currently, following algorithms are implemented:
 * Selection Sort
 * Merge Sort
 * Quick Sort
+
+## Demo Images
+
+Here are some impressions:
+
+![Sorting Visualizer Demo Img 1](docs/res/sorting-visualizer-demo-img-1.png)
+![Sorting Visualizer Demo Img 2](docs/res/sorting-visualizer-demo-img-2.png)
